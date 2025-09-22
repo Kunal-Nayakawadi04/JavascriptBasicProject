@@ -1,0 +1,146 @@
+/* Global ------------------------------------------------------------ */
+:root{
+	--bg: #f3f7fb;
+	--card: #ffffff;
+	--primary: #3b82f6; /* blue-500 */
+	--accent: #06b6d4; /* cyan-500 */
+	--muted: #64748b;
+	--success: #10b981;
+	--danger: #ef4444;
+}
+
+*{box-sizing: border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	background: linear-gradient(180deg,var(--bg), #e9f0fb 60%);
+	color:#0f172a;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	padding:32px;
+}
+
+/* Page container + card for the existing markup */
+.container{
+	width:100%;
+	max-width:680px;
+	margin:0 auto;
+	background:var(--card);
+	border-radius:14px;
+	padding:28px 32px;
+	box-shadow:0 12px 40px rgba(2,6,23,0.08);
+}
+
+/* Improve button hover/focus states */
+form button:hover{filter:brightness(1.03);transform:translateY(-1px)}
+form button:active{transform:translateY(0)}
+form button:focus{outline:none;box-shadow:0 8px 28px rgba(59,130,246,0.12)}
+
+/* Input placeholder and small tweaks */
+input::placeholder{color: #94a3b8}
+input{transition:box-shadow 160ms ease, border-color 160ms ease}
+
+/* Weight guide styling */
+#weight-guide{margin-top:12px;padding:12px;border-radius:8px;background:linear-gradient(180deg, rgba(234,242,255,0.6), rgba(245,252,255,0.6));color:var(--muted)}
+#weight-guide h3{margin:0 0 8px 0}
+
+
+/* Calculator card ----------------------------------------------- */
+.bmi-card{
+	width:100%;
+	max-width:520px;
+	background:var(--card);
+	border-radius:12px;
+	box-shadow: 0 8px 30px rgba(14, 30, 37, 0.08);
+	padding:28px;
+}
+
+.bmi-card h1{
+	margin:0 0 12px 0;
+	font-size:20px;
+	letter-spacing:0.2px;
+}
+.bmi-card p.lead{
+	margin:0 0 18px 0;
+	color:var(--muted);
+	font-size:14px;
+}
+
+/* Form layout ------------------------------------------------------ */
+.bmi-form{
+	display:grid;
+	grid-template-columns: 1fr 1fr;
+	gap:12px 14px;
+	align-items:end;
+}
+
+.form-group{display:flex;flex-direction:column;}
+.form-group label{font-size:13px;margin-bottom:6px;color:var(--muted)}
+.form-group input{
+	padding:10px 12px;
+	border:1px solid #e6eaf0;
+	border-radius:8px;
+	font-size:15px;
+}
+.form-group input:focus{outline:none;border-color:var(--primary);box-shadow:0 6px 18px rgba(59,130,246,0.08)}
+
+/* Full width row (buttons/result) */
+.full-row{grid-column:1 / -1;display:flex;gap:12px;align-items:center}
+
+.btn{
+	appearance:none; border:0; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:600;
+}
+.btn-primary{background:var(--primary); color:white; flex:1}
+.btn-clear{background:transparent; color:var(--muted); border:1px solid #eef2ff;}
+
+/* Result box ------------------------------------------------------- */
+.result{
+	background: linear-gradient(180deg, rgba(59,130,246,0.06), rgba(6,182,212,0.03));
+	padding:12px 14px; border-radius:8px; display:flex; align-items:center; gap:12px; flex:1; justify-content:space-between;
+}
+.result .value{font-size:20px;font-weight:700}
+.result .meta{font-size:13px;color:var(--muted)}
+
+/* Helpful tip / small text */
+.small{font-size:12px;color:var(--muted);margin-top:10px}
+
+/* Responsive ------------------------------------------------------- */
+@media (max-width:560px){
+	.bmi-card{padding:18px}
+	.bmi-form{grid-template-columns:1fr;}
+	.full-row{flex-direction:column;align-items:stretch}
+}
+
+/* Accessibility focus for keyboard users */
+.btn:focus, .form-group input:focus{box-shadow:0 0 0 3px rgba(59,130,246,0.12)}
+
+/* Additional styles: validation states, badges, and animations */
+.input-error{border-color:var(--danger) !important; box-shadow:0 6px 18px rgba(239,68,68,0.06) !important}
+.input-success{border-color:var(--success) !important; box-shadow:0 6px 18px rgba(16,185,129,0.06) !important}
+
+.badge{
+	display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700;
+}
+.badge.ok{background:rgba(16,185,129,0.12); color:var(--success);}
+.badge.warn{background:rgba(250,204,21,0.12); color:#b45309}
+.badge.danger{background:rgba(239,68,68,0.08); color:var(--danger)}
+
+/* Result reveal animation */
+.result{opacity:0; transform:translateY(6px); transition:opacity 220ms ease, transform 220ms ease}
+.result.show{opacity:1; transform:translateY(0)}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce){
+	.result, .btn, .form-group input{transition:none}
+}
+
+/* Print friendly */
+@media print{
+	body{background:white; padding:0}
+	.bmi-card{box-shadow:none; border-radius:0}
+	.btn, .form-group input{box-shadow:none}
+}
