@@ -1,0 +1,59 @@
+/* Digital Clock styles */
+:root{
+  --bg: #0b1220;
+  --panel: #07101a;
+  --accent: #4fd1c5;
+  --text: #000307;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family: 'Segoe UI', Roboto, system-ui, -apple-system, Arial;background:linear-gradient(180deg,var(--bg),#071022);color:var(--text);display:flex;align-items:center;justify-content:center}
+
+.center{display:flex;flex-direction:column;align-items:center;gap:18px;padding:28px}
+#banner{font-size:14px;color:rgba(230,238,246,0.8);text-transform:uppercase;letter-spacing:1px}
+
+#clock{
+  /* Yellow panel background */
+  background: linear-gradient(180deg, #f5ed9f, #ead625cf);
+  padding:20px 28px;
+  border-radius:14px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  display:inline-block;
+}
+
+.time{
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  font-weight:700;
+  font-size:96px;
+  line-height:1;
+  letter-spacing:2px;
+  color:#6486c9; /* dark text for contrast on yellow */
+}
+
+.colon{opacity:1;transition:opacity 300ms linear}
+.colon.blink{opacity:0}
+
+/* small AM/PM indicator */
+.ampm{font-size:18px;margin-left:8px;vertical-align:top;color:rgba(7,16,34,0.8)}
+
+/* Responsive scaling */
+@media (max-width:820px){
+  .time{font-size:72px}
+}
+@media (max-width:520px){
+  .time{font-size:48px}
+  #clock{padding:14px 18px}
+}
+
+/* Light theme utility */
+.light-theme{
+  --bg: #f5f8fb;
+  --panel: #ffffff;
+  --accent: #2563eb;
+  --text: #071022;
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .colon{transition:none}
+}
