@@ -1,0 +1,98 @@
+/* UnlimitedColors - styles */
+:root {
+  --primary: #3b82f6;
+  --success: #10b981;
+  --danger: #ef4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  transition: background-color 400ms ease;
+  background-color: #1a1a1a;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+h1 {
+  font-size: 2.4rem;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 24px;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+}
+
+button {
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 12px 32px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#start {
+  background: var(--success);
+  color: white;
+}
+
+#stop {
+  background: var(--danger);
+  color: white;
+}
+
+/* State classes for JavaScript */
+.running #start { opacity: 0.6; cursor: not-allowed; }
+.stopped #stop { opacity: 0.6; cursor: not-allowed; }
+
+/* Animation for color change */
+@keyframes colorPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.color-change {
+  animation: colorPulse 400ms ease;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+  .color-change { animation: none; }
+  button { transition: none; }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  h1 { font-size: 1.8rem; padding: 0 20px; }
+  .controls { flex-direction: column; }
+  button { width: 200px; }
+}
