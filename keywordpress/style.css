@@ -1,0 +1,208 @@
+/* Keywordpress styles */
+:root {
+  --bg: #1e293b;
+  --text: #e2e8f0;
+  --accent: #60a5fa;
+  --card: #334155;
+  --border: #475569;
+  --hover: #3b82f6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  color: var(--text);
+}
+
+.project {
+  width: 100%;
+  max-width: 900px;
+  padding: 20px;
+}
+
+#insert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.key {
+  background: var(--card);
+  padding: 20px 30px;
+  border-radius: 10px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+
+/* Key press display */
+.keyInfo {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 16px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.keyBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 24px;
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  min-width: 150px;
+}
+
+.keyBox .label {
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.keyBox .value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pressEffect {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.pressed {
+  animation: pressEffect 0.2s ease;
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .project {
+    padding: 16px;
+  }
+  
+  .key {
+    font-size: 1.2rem;
+    padding: 16px 24px;
+  }
+  
+  .keyInfo {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .keyBox {
+    width: 100%;
+  }
+}
+
+/* Table styles for key information */
+.key-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-out;
+  margin-top: 20px;
+}
+
+.key-table th,
+.key-table td {
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.key-table th {
+  background: rgba(0,0,0,0.2);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.key-table td {
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  transition: background-color 0.2s ease;
+}
+
+.key-table tr:last-child td {
+  border-bottom: none;
+}
+
+.key-table tr:hover td {
+  background: rgba(255,255,255,0.03);
+}
+
+.key-value {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: rgba(96,165,250,0.1);
+  border: 1px solid rgba(96,165,250,0.2);
+  font-weight: bold;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .key-table,
+  .keyInfo,
+  .pressed {
+    animation: none;
+  }
+  
+  * {
+    transition: none !important;
+  }
+}
+
+/* Responsive table */
+@media (max-width: 768px) {
+  .key-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .key-table th,
+  .key-table td {
+    padding: 12px 16px;
+    min-width: 120px;
+  }
+}
